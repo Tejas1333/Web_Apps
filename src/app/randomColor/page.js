@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function RandomColor() {
   const [color, setColor] = useState("");
+  const [savedColors, setSavedColors] = useState([]);
+  const [savedPage, setSavedPage] = useState(false);
 
   const colors = [
     "AliceBlue",
@@ -179,63 +181,127 @@ export default function RandomColor() {
     setColor(`rgb(${r}, ${g}, ${b})`);
   }
 
-  function namedColor(){
-    let result = ""
-    result += colors[Math.floor(Math.random() * colors.length)]
-    setColor(result)
+  function namedColor() {
+    let result = "";
+    result += colors[Math.floor(Math.random() * colors.length)];
+    setColor(result);
   }
 
-  function copyColor(){
-    navigator.clipboard.writeText(color)
-    alert("Color copied")
+  function savingColor() {
+    let type = "";
+    if (color[0] == "#") {
+      type = "hex";
+    } else if (color[0] == "r") {
+      type = "rgb";
+    } else {
+      type = "namecolor";
+    }
+
+    const data = {
+      type: type,
+      color: color,
+    };
+
+    setSavedColors((prev) => [...prev, data]);
   }
+
+  function copyColor() {
+    navigator.clipboard.writeText(color);
+    alert("Color copied");
+  }
+
+  useEffect(() => {
+    const data = localStorage.getItem("savedColors");
+
+    if (data) {
+      setSavedColors(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    // localStorage.clear();
+    localStorage.setItem("savedColors", JSON.stringify(savedColors));
+  }, [savedColors]);
 
   return (
-  <>
-    <div className="text-5xl font-bold text-center mt-10">
-      Random Color Generator
-    </div>
+    <>
+      <div className="text-5xl font-bold text-center mt-10">
+        Random Color Generator
+      </div>
 
-    <div className="flex justify-center gap-4 mt-8">
+      {savedPage ? (
+        <>
+          <div className="flex flex-wrap justify-center gap-4 mt-10">
+            <button
+            onClick={() => {
+              setSavedPage(false);
+            }}
+            className=" w-20 px-4 py-2 border rounded"
+          >
+            Go Back
+          </button>
+            {savedColors.map((item, index) => (
+              <div
+                key={index}
+                className="w-52 h-52 rounded-xl border shadow-lg flex flex-col justify-end p-4 text-white font-bold"
+                style={{
+                  backgroundColor: item.color,
+                }}
+              >
+                <p>{item.color}</p>
+                <p>{item.type}</p>
+              </div>
+            ))}
+          </div>
+          
+        </>
+      ) : (
+        <>
+          <div className="flex justify-center gap-4 mt-8">
+            <button onClick={hexColor} className="px-4 py-2 border rounded">
+              HEX Colors
+            </button>
 
-      <button
-        onClick={hexColor}
-        className="px-4 py-2 border rounded"
-      >
-        HEX Colors
-      </button>
+            <button onClick={rgbColor} className="px-4 py-2 border rounded">
+              RGB Color
+            </button>
 
-      <button
-        onClick={rgbColor}
-        className="px-4 py-2 border rounded"
-      >
-        RGB Color
-      </button>
+            <button onClick={namedColor} className="px-4 py-2 border rounded">
+              Named Colors
+            </button>
 
-      <button
-        onClick={namedColor}
-        className="px-4 py-2 border rounded"
-      >
-        Named Colors
-      </button>
+            <button onClick={copyColor} className="px-4 py-2 border rounded">
+              Copy Color
+            </button>
 
-      <button
-        onClick={copyColor}
-        className="px-4 py-2 border rounded"
-      >
-        Copy Color
-      </button>
+            <button
+              onClick={() => {
+                savingColor();
+              }}
+              className="px-4 py-2 border rounded"
+            >
+              Save Color
+            </button>
+            <button
+              onClick={() => {
+                setSavedPage(true);
+              }}
+              className="px-4 py-2 border rounded"
+            >
+              Save Page
+            </button>
+          </div>
 
-    </div>
-
-    <div
-      className="w-full min-h-screen flex justify-center items-center text-4xl font-bold mt-5 transition duration-500"
-      style={{
-        backgroundColor: color,
-      }}
-    >
-      {color}
-    </div>
-  </>
-);
+          <div
+            className="w-full min-h-screen flex justify-center items-center text-4xl font-bold mt-5 transition duration-500"
+            style={{
+              backgroundColor: color,
+            }}
+          >
+            {color}
+          </div>
+        </>
+      )}
+    </>
+  );
 }
