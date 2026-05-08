@@ -8,6 +8,7 @@ export default function Home() {
       <div className="flex flex-col gap-5">
         <Link href="/todo">To-do app</Link>
         <Link href="/accordion">Accordion</Link>
+        <Link href="/randomColor">Random Color Generator</Link>
       </div>
     </div>
   );
