@@ -9,6 +9,7 @@ export default function Home() {
         <Link href="/todo">To-do app</Link>
         <Link href="/accordion">Accordion</Link>
         <Link href="/randomColor">Random Color Generator</Link>
+        <Link href="/starRating">Star Rating</Link>
       </div>
     </div>
   );
