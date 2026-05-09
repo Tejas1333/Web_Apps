@@ -10,6 +10,7 @@ export default function Home() {
         <Link href="/accordion">Accordion</Link>
         <Link href="/randomColor">Random Color Generator</Link>
         <Link href="/starRating">Star Rating</Link>
+        <Link href="/imageSlider">Image Slider</Link>
       </div>
     </div>
   );
