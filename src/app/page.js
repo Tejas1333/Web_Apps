@@ -12,6 +12,7 @@ export default function Home() {
         <Link href="/starRating">Star Rating</Link>
         <Link href="/imageSlider">Image Slider</Link>
         <Link href="/loadMore">Load more Data</Link>
+        <Link href="/themeSwitch">Theme Switch</Link>
       </div>
     </div>
   );
