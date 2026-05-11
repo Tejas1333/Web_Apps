@@ -16,6 +16,7 @@ export default function Home() {
         <Link href="/qrGenerator">QR Generator</Link>
         <Link href="/scrollIndicator">Scroll Indicator</Link>
         <Link href="/modalPopup">Modal Popup</Link>
+        <Link href="/githubFinder">GitHub Profile Finder</Link>
       </div>
     </div>
   );
