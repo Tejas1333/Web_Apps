@@ -13,6 +13,7 @@ export default function Home() {
         <Link href="/imageSlider">Image Slider</Link>
         <Link href="/loadMore">Load more Data</Link>
         <Link href="/themeSwitch">Theme Switch</Link>
+        <Link href="/qrGenerator">QR Generator</Link>
       </div>
     </div>
   );
