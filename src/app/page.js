@@ -14,6 +14,7 @@ export default function Home() {
         <Link href="/loadMore">Load more Data</Link>
         <Link href="/themeSwitch">Theme Switch</Link>
         <Link href="/qrGenerator">QR Generator</Link>
+        <Link href="/scrollIndicator">Scroll Indicator</Link>
       </div>
     </div>
   );
