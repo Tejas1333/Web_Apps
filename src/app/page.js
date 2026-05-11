@@ -15,6 +15,7 @@ export default function Home() {
         <Link href="/themeSwitch">Theme Switch</Link>
         <Link href="/qrGenerator">QR Generator</Link>
         <Link href="/scrollIndicator">Scroll Indicator</Link>
+        <Link href="/modalPopup">Modal Popup</Link>
       </div>
     </div>
   );
