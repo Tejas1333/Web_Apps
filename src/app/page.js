@@ -17,6 +17,7 @@ export default function Home() {
         <Link href="/scrollIndicator">Scroll Indicator</Link>
         <Link href="/modalPopup">Modal Popup</Link>
         <Link href="/githubFinder">GitHub Profile Finder</Link>
+        <Link href="/ticTacToe">Tic Tac Toe</Link>
       </div>
     </div>
   );
