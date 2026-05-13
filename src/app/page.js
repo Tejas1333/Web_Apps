@@ -20,6 +20,7 @@ export default function Home() {
         <Link href="/ticTacToe">Tic Tac Toe</Link>
         <Link href="/autoSuggestions">Auto suggestions</Link>
         <Link href="/treeView">Tree View</Link>
+        <Link href="/useFetchHook">Use Fetch Hook</Link>
       </div>
     </div>
   );
